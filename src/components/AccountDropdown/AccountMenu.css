@@ -1,0 +1,70 @@
+
+/* Container cho menu tài khoản */
+.account-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Nút hiển thị tài khoản */
+.account-button {
+    background-color: #003c71;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 180px;
+
+}
+
+/* Nội dung của dropdown */
+.dropdown-content {
+    position: absolute;
+    background-color: white;
+    min-width: 270px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+}
+
+/* Button đăng nhập */
+.login-btn {
+    background-color: #17a2b8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Link đăng ký */
+.dropdown-content a {
+    color: #17a2b8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Định dạng tam giác nhỏ */
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
