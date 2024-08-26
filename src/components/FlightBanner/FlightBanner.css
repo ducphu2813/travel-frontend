@@ -1,0 +1,104 @@
+.flight-booking {
+    background-image: url('plane-banner.jpg');
+    background-size: cover;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    font-family: Arial, sans-serif;
+}
+
+.banner-container{
+    background-color: rgba(0, 0, 0, .3);;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.option-container{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+}
+
+.flight-option{
+    margin-right: 30px;
+}
+
+.flight-option input{
+    cursor: pointer;
+    margin-right: 8px;
+    height: 16px;
+    width: 16px;
+}
+
+.flight-option span{
+    cursor: pointer;
+}
+
+.flight-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*style cho tìm airport*/
+.airport-search {
+    position: relative;
+    width: 300px;
+}
+
+.airport-search input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dropdown {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-top: 5px;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.dropdown p {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+    background-color: #f1f1f1;
+}
+
+.dropdown-option {
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: #e7f3ff;
+}
+
+.dropdown-option strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+.dropdown-option p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #777;
+}

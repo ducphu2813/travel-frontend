@@ -1,8 +1,10 @@
+import FlightBanner from "../components/FlightBanner/FlightBanner.jsx";
 
 const Flight = () => {
     return (
         <div>
-            <h1>This is flight page</h1>
+            <FlightBanner/>
+
         </div>
     );
 }
