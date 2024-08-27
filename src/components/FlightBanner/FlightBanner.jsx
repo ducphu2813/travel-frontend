@@ -1,32 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./FlightBanner.css";
 
-const FlightBanner = () => {
-
-    const [tripType, setTripType] = useState('round-trip');
-    const [from, setFrom] = useState('Hồ Chí Minh (SGN)');
-    const [to, setTo] = useState('Nha Trang (CXR)');
-    const [departDate, setDepartDate] = useState('2024-08-26');
-    const [returnDate, setReturnDate] = useState('2024-08-27');
-    const [passengers, setPassengers] = useState(1);
-
-    const handleSearch = () => {
-        // Handle search logic here
-    };
-
-    //handle search logic
-    const [inputValue, setInputValue] = useState('');
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-        setIsOpen(true);
-    };
-
-    const handleOptionClick = (option) => {
-        setInputValue(option.name);
-        setIsOpen(false);
-    };
+//component AirportSearch
+const AirportSearch = ({ label, initialValue, onAirportSelect, excludedAirport }) => {
 
     const airports = [
         { name: "Nha Trang (CXR)", description: "Sân bay quốc tế Cam Ranh" },
@@ -37,16 +13,145 @@ const FlightBanner = () => {
         { name: "Phú Quốc (PQC)", description: "Sân bay quốc tế Phú Quốc" }
     ];
 
+    const [inputValue, setInputValue] = useState(initialValue || '');
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        setInputValue(initialValue);
+    }, [initialValue]);
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+        setIsOpen(true);
+    };
+
+    const handleOptionClick = (option) => {
+        setInputValue(option.name);
+        setIsOpen(false);
+        onAirportSelect(option.name);
+    };
+
+    return (
+        <div className="airport-search">
+            <input
+                type="text"
+                placeholder={label}
+                value={inputValue}
+                onChange={handleInputChange}
+                onClick={() => setIsOpen(!isOpen)}
+            />
+            {isOpen && (
+                <div className="dropdown">
+                    {airports
+                        .filter((airport) => airport.name !== excludedAirport)
+                        .map((airport, index) => (
+                            <div
+                                key={index}
+                                className="dropdown-option"
+                                onClick={() => handleOptionClick(airport)}
+                            >
+                                <strong>{airport.name}</strong>
+                                <p>{airport.description}</p>
+                            </div>
+                        ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const FlightBanner = () => {
+
+    const [departureAirport, setDepartureAirport] = useState('Hồ Chí Minh (SGN)');
+    const [arrivalAirport, setArrivalAirport] = useState('Hà Nội (HAN)');
+
+    const handleDepartureSelect = (airport) => {
+        setDepartureAirport(airport);
+        if (airport === arrivalAirport) setArrivalAirport('');
+    };
+
+    const handleArrivalSelect = (airport) => {
+        setArrivalAirport(airport);
+        if (airport === departureAirport) setDepartureAirport('');
+    };
+
+    //xử lý chọn khứ hồi hoặc một chiều
+    const [tripType, setTripType] = useState('round-trip');
+
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+
+    const dayAfterTomorrow = new Date(tomorrow);
+    dayAfterTomorrow.setDate(tomorrow.getDate() + 2);
+
+    const [departDate, setDepartDate] = useState(tomorrow.toISOString().split('T')[0]);
+    const [returnDate, setReturnDate] = useState(dayAfterTomorrow.toISOString().split('T')[0]);
+
+    useEffect(() => {
+        // Update the return date if it becomes invalid based on the new depart date
+        const newReturnDate = new Date(departDate);
+        newReturnDate.setDate(newReturnDate.getDate() + 2);
+
+        if (new Date(returnDate) <= new Date(departDate)) {
+            setReturnDate(newReturnDate.toISOString().split('T')[0]);
+        }
+    }, [departDate]);
+
+    //xử lý nhập số hành khách
+    const [passengerCount, setPassengerCount] = useState(1);
+
+    const handleIncrease = () => {
+        setPassengerCount((prevCount) => prevCount + 1);
+    };
+
+    const handleDecrease = () => {
+        if (passengerCount > 1) {
+            setPassengerCount((prevCount) => prevCount - 1);
+        }
+    };
+
+    //xử lý tìm chuyến bay
+    const handleSearch = () => {
+        alert('Searching for flights ...');
+
+        // Tạo 1 json object chứa thông tin chuyến bay
+        const flightInfo = {
+            tripType,
+            departureAirport,
+            arrivalAirport,
+            departDate,
+            returnDate,
+            passengerCount
+        };
+        console.log(flightInfo);
+    };
+
+
     return (
         <div className="flight-booking">
             <div className="banner-container">
                 <div className="option-container">
                     <div className="flight-option">
-                        <input type="radio" name="flight-type"/>
+                        <input
+                            type="radio"
+                            name="flight-type"
+                            id="round-trip"
+                            value="round-trip"
+                            checked={tripType === 'round-trip'}
+                            onChange={() => setTripType('round-trip')}
+                        />
                         <span>Khứ hồi</span>
                     </div>
                     <div className="flight-option">
-                        <input type="radio" name="flight-type"/>
+                        <input
+                            type="radio"
+                            name="flight-type"
+                            id="one-way"
+                            value="one-way"
+                            checked={tripType === 'one-way'}
+                            onChange={() => setTripType('one-way')}
+                        />
                         <span>Một chiều</span>
                     </div>
                 </div>
@@ -54,61 +159,43 @@ const FlightBanner = () => {
                 <div className="flight-form">
                     <div className="left-section">
                         <div className="city-container">
-
-
-                            <div className="airport-search">
-                                <input
-                                    type="text"
-                                    placeholder="Từ"
-                                    value={inputValue}
-                                    onChange={handleInputChange}
-                                    onClick={() => setIsOpen(!isOpen)}
-                                />
-                                {isOpen && (
-                                    <div className="dropdown">
-                                        <p>Sân bay tìm kiếm gần đây</p>
-                                        {airports.map((airport, index) => (
-                                            <div
-                                                key={index}
-                                                className="dropdown-option"
-                                                onClick={() => handleOptionClick(airport)}
-                                            >
-                                                <strong>{airport.name}</strong>
-                                                <p>{airport.description}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
-
-                            <div className="airport-search">
-                                <input
-                                    type="text"
-                                    placeholder="Đến"
-                                    value={inputValue}
-                                    onChange={handleInputChange}
-                                    onClick={() => setIsOpen(!isOpen)}
-                                />
-                                {isOpen && (
-                                    <div className="dropdown">
-                                        <p>Sân bay tìm kiếm gần đây</p>
-                                        {airports.map((airport, index) => (
-                                            <div
-                                                key={index}
-                                                className="dropdown-option"
-                                                onClick={() => handleOptionClick(airport)}
-                                            >
-                                                <strong>{airport.name}</strong>
-                                                <p>{airport.description}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
+                            <AirportSearch
+                                label="Từ"
+                                initialValue={departureAirport}
+                                onAirportSelect={handleDepartureSelect}
+                                excludedAirport={arrivalAirport}
+                            />
+                            <AirportSearch
+                                label="Đến"
+                                initialValue={arrivalAirport}
+                                onAirportSelect={handleArrivalSelect}
+                                excludedAirport={departureAirport}
+                            />
                         </div>
 
                         <div className="date-container">
+
+                            <div className="date-input">
+                                <label>Ngày đi</label>
+                                <input
+                                    type="date"
+                                    value={departDate}
+                                    min={today.toISOString().split('T')[0]}
+                                    onChange={(e) => setDepartDate(e.target.value)}
+                                />
+                            </div>
+
+                            {tripType === 'round-trip' && (
+                                <div className="date-input">
+                                    <label>Ngày về</label>
+                                    <input
+                                        type="date"
+                                        value={returnDate}
+                                        min={new Date(departDate).toISOString().split('T')[0]}
+                                        onChange={(e) => setReturnDate(e.target.value)}
+                                    />
+                                </div>
+                            )}
 
                         </div>
                     </div>
@@ -116,17 +203,22 @@ const FlightBanner = () => {
                     <div className="right-section">
                         <div className="passenger-container">
                             <label>Số hành khách</label>
-                            <select name="" id="">
-                                <option value="1">1 hành khách</option>
-                                <option value="2">2 hành khách</option>
-                                <option value="3">3 hành khách</option>
-                                <option value="4">4 hành khách</option>
-                                <option value="5">5 hành khách</option>
-                                <option value="6">6 hành khách</option>
-                            </select>
+                            <div className="passenger-counter">
+                                <button onClick={handleDecrease} className="counter-button"
+                                        disabled={passengerCount <= 1}>
+                                    -
+                                </button>
+                                <span className="counter-value">{passengerCount}</span>
+                                <button onClick={handleIncrease} className="counter-button">
+                                    +
+                                </button>
+                            </div>
                         </div>
 
-                        <button onClick={handleSearch}>Tìm chuyến bay</button>
+                        <button
+                            className="search-btn"
+                            onClick={handleSearch}
+                        >Tìm chuyến bay</button>
                     </div>
                 </div>
 

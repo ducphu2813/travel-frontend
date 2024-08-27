@@ -25,6 +25,7 @@
     width: 100%;
     color: white;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .flight-option{
@@ -49,9 +50,18 @@
 }
 
 /*style cho tìm airport*/
+.city-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
 .airport-search {
     position: relative;
     width: 300px;
+    margin-right: 10px;
 }
 
 .airport-search input {
@@ -101,4 +111,82 @@
     margin: 5px 0 0;
     font-size: 14px;
     color: #777;
+}
+
+/* style cho date picker */
+.date-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+}
+
+.date-input{
+    margin-right: 24px;
+    font-size: 20px;
+}
+
+.date-input label{
+    margin-right: 10px;
+}
+
+.date-input input{
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* style cho passengers change */
+.passenger-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.passenger-container label{
+    margin-right: 10px;
+}
+
+.passenger-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.counter-button {
+    background-color: #f7f7f7;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.counter-button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.counter-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* nút tìm chuyến bay */
+.search-btn{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }
