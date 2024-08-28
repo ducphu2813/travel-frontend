@@ -8,6 +8,7 @@ import Tour from "./pages/Tour.jsx";
 import Attraction from "./pages/Attraction.jsx";
 import Resort from "./pages/Resort.jsx";
 import Flight from "./pages/Flight.jsx";
+import FlightSearch from "./components/FlightSearch/FlightSearch.jsx";
 function App() {
 
     //tạo layout
@@ -45,6 +46,10 @@ function App() {
                     path: "/flights",
                     element: <Flight />
                 },
+                {
+                    path: "/flights/search",
+                    element: <FlightSearch />
+                }
             ]
         }
     ]);

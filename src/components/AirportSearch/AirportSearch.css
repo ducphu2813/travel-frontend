@@ -1,0 +1,63 @@
+/*style cho tìm airport*/
+.city-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.airport-search {
+    position: relative;
+    width: 300px;
+    margin-right: 10px;
+}
+
+.airport-search input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dropdown {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-top: 5px;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.dropdown p {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+    background-color: #f1f1f1;
+}
+
+.dropdown-option {
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: #e7f3ff;
+}
+
+.dropdown-option strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+.dropdown-option p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #777;
+}

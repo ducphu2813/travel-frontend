@@ -1,0 +1,12 @@
+.suggest-container{
+    width: 100%;
+    padding: 100px 240px;
+    font-family: Arial, sans-serif;
+}
+
+.suggest-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px;
+}
