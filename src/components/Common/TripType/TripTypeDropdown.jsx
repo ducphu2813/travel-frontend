@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./TripTypeDropdown.css";
+import "./TripTypeDropDown.css";
 
 const TripTypeDropdown = () => {
     const [selectedOption, setSelectedOption] = useState('Khứ hồi');

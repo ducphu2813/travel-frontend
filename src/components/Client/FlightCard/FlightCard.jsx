@@ -1,6 +1,6 @@
 import React from 'react';
 import './FlightCard.css';
-import vietjetLogo from '../../assets/vietjet.webp';
+import vietjetLogo from '../../../assets/vietjet.webp';
 
 
 const FlightCard = () => {

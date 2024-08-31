@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import "./Navbar.css";
-import AccountMenu from "../AccountDropdown/AccountMenu.jsx";
+import AccountMenu from "../../Common/AccountDropdown/AccountMenu.jsx";
 
 export const Navbar = () => {
     return(

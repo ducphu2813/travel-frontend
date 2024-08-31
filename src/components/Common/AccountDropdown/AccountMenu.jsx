@@ -26,7 +26,7 @@ const AccountMenu = () => {
     return (
         <div className="account-menu">
             <button className="account-button" onClick={toggleDropdown}>
-                <img src="../../assets/user.png" alt="" /> Tài khoản ▼
+                <img src="../../../assets/user.png" alt="" /> Tài khoản ▼
             </button>
             {isOpen && (
                 <div className="dropdown-content">

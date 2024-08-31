@@ -1,5 +1,5 @@
 .flight-booking {
-    background-image: url('../../assets/plane-banner.jpg');
+    background-image: url('../../../assets/plane-banner.jpg');
     background-size: cover;
     padding: 50px;
     display: flex;
