@@ -4,7 +4,7 @@ import AccountMenu from "../../Common/AccountDropdown/AccountMenu.jsx";
 
 export const Navbar = () => {
     return(
-        <div className="nav">
+        <div className="navigator">
             <div className="navbar-header">
                 Logo
             </div>

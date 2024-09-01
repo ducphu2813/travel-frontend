@@ -1,4 +1,4 @@
-/* css của Trip Type */
+/* phần css của trip type */
 .trip-type-dropdown {
     position: relative;
     display: inline-block;
@@ -20,6 +20,7 @@
 
 .dropdown-menu {
     position: absolute;
+    display: block !important;
     top: 100%;
     left: 0;
     background-color: white;

@@ -1,0 +1,12 @@
+.nav{
+    background-color: #00bcd4;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+
+}
+
+.nav-item a{
+    color: white;
+    font-size: 20px;
+}

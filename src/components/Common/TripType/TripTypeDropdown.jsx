@@ -14,6 +14,8 @@ const TripTypeDropdown = () => {
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
+        // console.log(isOpen);
+        // console.log(selectedOption);
     };
 
     return (

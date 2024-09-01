@@ -1,4 +1,4 @@
-.nav{
+.navigator{
     display: flex;
     width: 100%;
     background-color: #003c71;
@@ -10,12 +10,12 @@
     margin: 30px;
 }
 
-.nav ul{
+.navigator ul{
     list-style-type: none;
     display: flex;
 }
 
-.nav ul li{
+.navigator ul li{
     display: flex;
     margin-right: 40px;
     align-items: center;  /* Canh giữa theo chiều cao */
@@ -24,7 +24,7 @@
     text-decoration: none;
 }
 
-.nav ul li a{
+.navigator ul li a{
     text-decoration: none;
     color: white;
 }

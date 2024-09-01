@@ -5,8 +5,6 @@ import TripTypeDropdown from '../TripType/TripTypeDropdown.jsx';
 
 const FlightSearch = () => {
 
-
-
     return (
         <div className="search-container">
             <div className="filter-container">

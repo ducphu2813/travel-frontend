@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
 import {Navbar} from "./components/Client/Navbar/Navbar.jsx";
-import "../src/style/global.scss";
-
+import "./app.css";
 import {createBrowserRouter, Outlet, RouterProvider} from 'react-router-dom';
 import Tour from "./pages/Client/Tour/Tour.jsx";
 import Attraction from "./pages/Client/Attraction/Attraction.jsx";
@@ -11,7 +10,11 @@ import Flight from "./pages/Client/Flight/Flight.jsx";
 import FlightSearch from "./components/Common/FlightSearch/FlightSearch.jsx";
 import Login from "./pages/Client/Login/Login.jsx";
 import Register from "./pages/Client/Register/Register.jsx";
-import AdminNavBar from "./components/Admin/NavBar/AdminNavBar.jsx";
+import AdmNavBar from "./components/Admin/NavBar/AdmNavBar.jsx";
+import AdFlight from "./pages/Admin/Flight/AdFlight.jsx";
+import AdResort from "./pages/Admin/Resort/AdResort.jsx";
+import AdAttraction from "./pages/Admin/Attraction/AdAttraction.jsx";
+import AdTour from "./pages/Admin/Tour/AdTour.jsx";
 function App() {
 
     //tạo layout
@@ -30,16 +33,11 @@ function App() {
     //admin layout
     const AdminLayout = () => {
         return (
-            <div className="main">
-                <div className="container">
+            <div className="">
+                <AdmNavBar/>
 
-                    <div className="menuContainer">
-                        <AdminNavBar/>
-                    </div>
-
-                    <div className="contentContainer">
-                        <Outlet/>
-                    </div>
+                <div className="">
+                    <Outlet/>
                 </div>
             </div>
         );
@@ -83,7 +81,25 @@ function App() {
         },
         {
             path: "/admin",
-            element: <AdminLayout/>
+            element: <AdminLayout/>,
+            children: [
+                {
+                    path: "/admin/tour",
+                    element: <AdTour/>
+                },
+                {
+                    path: "/admin/attraction",
+                    element: <AdAttraction />
+                },
+                {
+                    path: "/admin/resort",
+                    element: <AdResort />
+                },
+                {
+                    path: "/admin/flight",
+                    element: <AdFlight />
+                },
+            ]
         }
     ]);
 

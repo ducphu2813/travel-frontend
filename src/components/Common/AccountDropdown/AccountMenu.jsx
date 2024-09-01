@@ -1,6 +1,7 @@
 
 import './AccountMenu.css';
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 
 const AccountMenu = () => {
 
@@ -30,8 +31,8 @@ const AccountMenu = () => {
             </button>
             {isOpen && (
                 <div className="dropdown-content">
-                    <button className="login-btn">Đăng nhập</button>
-                    <p>Chưa có tài khoản? <a href="#">Đăng ký</a> ngay</p>
+                    <Link className="login-btn" to="/login">Đăng nhập</Link>
+                    <p>Chưa có tài khoản? <Link to="/register">Đăng ký</Link> ngay</p>
                 </div>
             )}
         </div>
